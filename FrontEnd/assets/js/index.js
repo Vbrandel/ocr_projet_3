@@ -1,5 +1,7 @@
+let works = []
+
 async function fetchData() {
-    let works = await fetch('http://localhost:5678/api/works')
+    works = await fetch('http://localhost:5678/api/works')
     works = await works.json()
     displayWorks(works)
 
@@ -7,13 +9,14 @@ async function fetchData() {
     fetch('http://localhost:5678/api/categories')
         .then(res => res.json())
         .then(categories => {
-            displayCategories(categories)
+            displayCategories([{id: null, name: 'Tous'}].concat(categories))
         })
 }
 
 
 function displayWorks(works) {
     const worksList = document.querySelector('.gallery');
+    worksList.innerHTML = ''
     works.forEach(work => {
         const item = document.createElement('figure')
         item.innerHTML = `
@@ -32,8 +35,20 @@ function displayCategories(categories) {
         item.classList.add('category-item')
         item.innerText = category.name
         categoriesUl.appendChild(item)
+        addEventCategory(item, category.id)
     })
 
+}
+
+function addEventCategory(item, categoryId) {
+    item.addEventListener('click', () => {
+        if (!categoryId) {
+            displayWorks(works)
+            return
+        }
+        const filteredWorks = works.filter(w => w.categoryId === categoryId)
+        displayWorks(filteredWorks)
+    })
 }
 
 fetchData();
