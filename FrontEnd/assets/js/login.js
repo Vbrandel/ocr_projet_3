@@ -11,20 +11,18 @@
  *
  */
 
+
+
 const loginURI = "http://localhost:5678/api/users/login";
-const form = document.getElementsByClassName("form-primary")[0].elements;
+const form = document.querySelector(".form-primary");
 let alreadyMsgError = false;
 
 function getUserLog() {
     let email = form["email"].value;
     let password = form["password"].value;
 
-    const user = {
-        email: email,
-        password: password
-    }
+    return {email, password}
 
-    return user;
 }
 
 function showErrorMsg() {
@@ -33,15 +31,13 @@ function showErrorMsg() {
 
     if (!alreadyMsgError) {
         document.getElementById('error-msg-log')
-        .appendChild(p).classList.add("error-msg");
+            .appendChild(p).classList.add("error-msg");
         p.innerHTML = errorMsg;
         alreadyMsgError = true;
     }
 }
 
-form["submit-login"].addEventListener('click', function(event) {
-    event.preventDefault();
-    let user = getUserLog();
+function login(user){
     fetch(loginURI, {
         method: 'POST',
         headers: {
@@ -49,23 +45,28 @@ form["submit-login"].addEventListener('click', function(event) {
         },
         body: JSON.stringify(user)
     })
-    .then(function(res) {
-        if (res.ok) {
-            return res.json();
-        }
-        else {
+        .then(function (res) {
+            if (res.ok) {
+                return res.json();
+            }
             //here show the html error message
             showErrorMsg();
-            return 1;
-        }
-    })
-    .then(function(value) {
-        if (value !== 1) {
-            sessionStorage.setItem("token", value.token);
-            location.href = "index.html";
-        }
-    })
-    .catch(function(err) {
-        console.log(err);
-    })
+            return null;
+        })
+        .then(function (value) {
+            if (value) {
+                sessionStorage.setItem("token", value.token);
+                location.href = "index.html";
+            }
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
+}
+
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    let user = getUserLog();
+    login(user)
 }); 
