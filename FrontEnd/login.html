@@ -22,16 +22,19 @@
             </ul>
         </nav>
     </header>
+    <p>email: sophie.bluel@test.tld
+
+        password: S0phie </p>
     <main class="main-fit-content">
         <div class="login-container">
             <div id="error-msg-log"></div>
             <h2>Log In</h2>
             <form class="form-primary" method="post">
                 <label for="email">E-mail</label>
-                <input class="input-field" type="email" name="email" required>
+                <input class="input-field" type="email" name="email" required autocomplete="off">
                 <label for="password">Mot de passe</label>
-                <input class="input-field" type="password" name="password" required>
-                <input type="submit" name="submit-login" value="Se connecter">
+                <input class="input-field" type="password" name="password" required  autocomplete="off">
+                <button type="submit" name="submit-login">Se connecter</button>
             </form>
             <a href="#">Mot de passe oublié</a>
         </div>
