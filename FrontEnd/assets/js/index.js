@@ -23,16 +23,11 @@ modalBg.addEventListener('click', () => {
 })
 
 async function fetchData() {
-    works = await fetch('http://localhost:5678/api/works')
-    works = await works.json()
+    works = await getWorks()
     displayWorks(works)
 
-
-    fetch('http://localhost:5678/api/categories')
-        .then(res => res.json())
-        .then(categories => {
-            displayCategories([{id: null, name: 'Tous'}].concat(categories))
-        })
+    const categories = await getCategories()
+    displayCategories([{id: null, name: 'Tous'}].concat(categories))
 }
 
 
@@ -41,6 +36,7 @@ function displayWorks(works) {
     worksList.innerHTML = ''
     works.forEach(work => {
         const item = document.createElement('figure')
+        item.setAttribute('data-id', work.id)
         item.innerHTML = `
             <img src="${work.imageUrl}" alt="${work.title}">
             <figcaption>${work.title}</figcaption>

@@ -33,19 +33,37 @@ if (token != null) {
         
     let login = document.querySelector("nav ul li a[href='login.html']");
 
-    /*function displayWorksModal(works){
+    async function displayWorksModal(){
+        const works = await getWorks()
         const worksListModal = document.querySelector('.gallery-modal');
-        worksList.innerHTML = ''
+        worksListModal.innerHTML = ''
         works.forEach(work => {
-            const item = document.createElement('figure')
+            const item = document.createElement('li')
             item.innerHTML = `
                 <img src="${work.imageUrl}" alt="${work.title}">
-                <figcaption>${work.title}</figcaption>
+                <p>éditer</p>
             `
-            worksList.appendChild(item)
+            const button = document.createElement('button')
+            button.innerHTML = '<img src="assets/icons/trash.svg" alt="Icone suppression">'
+
+            button.addEventListener('click', async () => {
+                const workGallery = document.querySelector(`.gallery figure[data-id="${work.id}"]`)
+
+                const res = await deleteWork(work.id)
+                if(!res.ok){
+                    alert('Erreur lors de la suppression')
+                    return
+                }
+                item.remove()
+                workGallery.remove()
+            })
+
+            item.appendChild(button)
+            worksListModal.appendChild(item)
         })
-    }*/
+    }
 
     changeInnerHtml(login, "logout");
     logOut(login);
+    displayWorksModal()
 };

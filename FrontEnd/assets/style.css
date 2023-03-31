@@ -270,6 +270,8 @@ footer nav ul {
 	background: white;
 	border-radius: 10px;
 	z-index: 2;
+	overflow: auto;
+    height: 80%;
 
 }
 
@@ -286,4 +288,28 @@ footer nav ul {
 	display: none;
 	background: none;
 	border: none;
+}
+
+.gallery-modal {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.gallery-modal li {
+	width: calc(33% - 6px);
+	margin: 3px;
+	position: relative;
+}
+
+.gallery-modal li img {
+	width: 100%;
+	object-fit: cover;
+}
+
+.gallery-modal li button {
+	border: none;
+	background: black;
+	position: absolute;
+	right: 6px;
+	top: 6px;
 }
