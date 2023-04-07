@@ -1,112 +1,141 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<meta charset="UTF-8">
-	<title>Sophie Bluel - Architecte d'intérieur</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
-	<meta name="description" content="">
-	<link rel="stylesheet" href="./assets/style.css">
+    <meta charset="UTF-8">
+    <title>Sophie Bluel - Architecte d'intérieur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+          rel="stylesheet">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
 <header>
-	<div class="navbar-admin">
-		<div class="admin-container">
-			<img src="assets/icons/pen-white.svg" alt="icon modification">
-			<p>Mode édition</p>
-			<button>publier les changements</button>
-		</div>
-	</div>
-	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
-	<nav>
-		<ul>
-			<li>projets</li>
-			<li>contact</li>
-			<li><a href="login.html">login</a></li>
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-		</ul>
-	</nav>
+    <div class="navbar-admin">
+        <div class="admin-container">
+            <img src="assets/icons/pen-white.svg" alt="icon modification">
+            <p>Mode édition</p>
+            <button>publier les changements</button>
+        </div>
+    </div>
+    <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+    <nav>
+        <ul>
+            <li>projets</li>
+            <li>contact</li>
+            <li><a href="login.html">login</a></li>
+            <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+        </ul>
+    </nav>
 </header>
 <main>
-	<section id="introduction">
-		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
-		</figure>
-		<article>
-			<h2>Designer d'espace</h2>
-			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
-			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
-		</article>
-	</section>
-	<section id="portfolio">
-		<h2>Mes Projets</h2>
-		<button id="works-modify">
-			<img src="assets/icons/pen.svg" alt="icon modification"/> Modifier
-		</button>
-		<ul id="categories">
-		</ul>
-		<div class="gallery">
+    <section id="introduction">
+        <figure>
+            <img src="./assets/images/sophie-bluel.png" alt="">
+        </figure>
+        <article>
+            <h2>Designer d'espace</h2>
+            <p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison
+                finale du chantier.</p>
+            <p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les
+                couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier
+                sera assuré dans le souci du détail, le respect du planning et du budget.</p>
+            <p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
+                décorateur(trice)</p>
+        </article>
+    </section>
+    <section id="portfolio">
+        <h2>Mes Projets</h2>
+        <button id="works-modify">
+            <img src="assets/icons/pen.svg" alt="icon modification"/> Modifier
+        </button>
+        <ul id="categories">
+        </ul>
+        <div class="gallery">
 
-		</div>
-	</section>
-	<section id="contact">
-		<h2>Contact</h2>
-		<p>Vous avez un projet ? Discutons-en !</p>
-		<form action="#" method="post">
-			<label for="name">Nom</label>
-			<input type="text" name="name" id="name">
-			<label for="email">Email</label>
-			<input type="email" name="email" id="email">
-			<label for="message">Message</label>
-			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
-		</form>
-	</section>
+        </div>
+    </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Vous avez un projet ? Discutons-en !</p>
+        <form action="#" method="post">
+            <label for="name">Nom</label>
+            <input type="text" name="name" id="name">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+            <label for="message">Message</label>
+            <textarea name="message" id="message" cols="30" rows="10"></textarea>
+            <input type="submit" value="Envoyer">
+        </form>
+    </section>
 </main>
 
 <footer>
-	<nav>
-		<ul>
-			<li>Mentions Légales</li>
-		</ul>
-	</nav>
+    <nav>
+        <ul>
+            <li>Mentions Légales</li>
+        </ul>
+    </nav>
 </footer>
 
-<div class="modal">
-	<div class="modal-container">
-		<img src="assets/icons/cross.svg" class="cross">
-		<h3>Galerie Photo</h3>
-		<ul class="gallery-modal">
-		</ul>
-		<div class="button-modal">
-			<button class="add-img">Ajouter une photo</button>
-			<button class="dlt-img">Supprimer la galerie</button>
-		</div>
-	</div>
-	<div class="modal-bg"></div>
-	
-</div>
-</div>
-<div class="modal-add">
-	<img src="assets/icons/cross.svg" class="cross">
-	<h3>Ajout photo</h3>
-		<div class="add-block">
-			<img src="assets/icons/addImg.svg" class="photo-modal-add">
-			<p class="btn-photo">+ Ajouter photo</p>
-			<p>jpg, png : 4mo max</p>
-		</div>
-		<label for="titre">Titre</label>
-		<input class="add-modal-champ" type="email" name="title" required autocomplete="off">
-		<label for="categorie">Catégorie</label>
-		<select name="categorie"></select>
+<!--<div class="modal">
+    <div class="modal-container">
+        <img src="assets/icons/cross.svg" class="cross">
+        <h3>Galerie Photo</h3>
+        <ul class="gallery-modal">
+        </ul>
+        <div class="button-modal">
+            <button class="add-img">Ajouter une photo</button>
+            <button class="dlt-img">Supprimer la galerie</button>
+        </div>
+    </div>
+    <div class="modal-bg"></div>
 
-		<div class="input-modal">
-			<button class="submit-modal-add" type="submit" name="submit-add">Valider</button> 
-		</div>
 </div>
+</div>-->
+<div class="modal">
+    <div class="modal-buttons">
+        <img src="assets/icons/arrow-left.svg" class="arrow">
+        <img src="assets/icons/cross.svg" class="cross">
+    </div>
+    <div class="modal-container">
+        <ul>
+            <li class="slide">
+                <h3>Galerie Photo</h3>
+                <ul class="gallery-modal">
+                </ul>
+                <div class="button-modal">
+                    <button class="add-img">Ajouter une photo</button>
+                    <button class="dlt-img">Supprimer la galerie</button>
+                </div>
+            </li>
+
+            <li class="slide">
+                <h3>Ajout photo</h3>
+                <input type="file" id="add-photo" name="photo"/>
+                <label class="add-block" for="add-photo">
+                    <img src="assets/icons/addImg.svg" class="photo-modal-add">
+                    <p class="btn-photo">+ Ajouter photo</p>
+                    <p>jpg, png : 4mo max</p>
+                </label>
+                <label for="titre">Titre</label>
+                <input id="titre" class="add-modal-champ" type="email" name="title" required autocomplete="off">
+                <label for="categorie">Catégorie</label>
+                <select id="categorie" name="categorie"></select>
+
+                <div class="input-modal">
+                    <button class="submit-modal-add" type="submit" name="submit-add">Valider</button>
+                </div>
+            </li>
+
+        </ul>
+
+
+    </div>
+</div>
+    <div class="modal-bg"></div>
 
 <script src="assets/js/api.js"></script>
 <script src="assets/js/modal.js"></script>
