@@ -19,6 +19,9 @@ if (token != null) {
     const buttonEditWorks = document.querySelector('#works-modify')
     const modalBg = document.querySelector('.modal-bg')
     const modal = document.querySelector('.modal')
+    const cross = document.querySelector('.cross')
+    const addImg = document.querySelector('.add-img')
+    const modalAdd = document.querySelector('.modal-add')
 
     buttonEditWorks.addEventListener('click', () => {
         modal.style.display = 'block'
@@ -26,6 +29,20 @@ if (token != null) {
     
     modalBg.addEventListener('click', () => {
         modal.style.display = 'none'
+    })
+
+    cross.addEventListener('click', (modalBg) => {
+        modal.style.display = 'none'
+    })
+
+    addImg.addEventListener('click', () => {
+        modal.style.display = 'none',
+        modalAdd.style.display = 'block',
+        modalBg.style.display = 'block';
+    })
+
+    cross.addEventListener('click', (modalAdd) => {
+        modalAdd.style.display = 'none'
     })
 
     buttonEditWorks.style.display = 'block'

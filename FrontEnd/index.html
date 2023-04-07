@@ -77,14 +77,35 @@
 
 <div class="modal">
 	<div class="modal-container">
-		<h2>Galerie Photo</h2>
+		<img src="assets/icons/cross.svg" class="cross">
+		<h3>Galerie Photo</h3>
 		<ul class="gallery-modal">
-
 		</ul>
-		<button>Ajouter une photo</button>
-		<button>Supprimer la galerie</button>
+		<div class="button-modal">
+			<button class="add-img">Ajouter une photo</button>
+			<button class="dlt-img">Supprimer la galerie</button>
+		</div>
 	</div>
-<div class="modal-bg"></div>
+	<div class="modal-bg"></div>
+	
+</div>
+</div>
+<div class="modal-add">
+	<img src="assets/icons/cross.svg" class="cross">
+	<h3>Ajout photo</h3>
+		<div class="add-block">
+			<img src="assets/icons/addImg.svg" class="photo-modal-add">
+			<p class="btn-photo">+ Ajouter photo</p>
+			<p>jpg, png : 4mo max</p>
+		</div>
+		<label for="titre">Titre</label>
+		<input class="add-modal-champ" type="email" name="title" required autocomplete="off">
+		<label for="categorie">Catégorie</label>
+		<select name="categorie"></select>
+
+		<div class="input-modal">
+			<button class="submit-modal-add" type="submit" name="submit-add">Valider</button> 
+		</div>
 </div>
 
 <script src="assets/js/api.js"></script>
