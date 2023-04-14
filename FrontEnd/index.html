@@ -10,17 +10,18 @@
           rel="stylesheet">
     <meta name="description" content="">
     <link rel="stylesheet" href="./assets/style.css">
+	<script src="https://kit.fontawesome.com/cc75d89bda.js" crossorigin="anonymous"></script>
 </head>
 <body>
+	<div class="navbar-admin">
+		<div class="admin-container">
+			<img src="assets/icons/pen-white.svg" alt="icon modification">
+			<p>Mode édition</p>
+			<button>publier les changements</button>
+		</div>
+</div>
 <header>
-    <div class="navbar-admin">
-        <div class="admin-container">
-            <img src="assets/icons/pen-white.svg" alt="icon modification">
-            <p>Mode édition</p>
-            <button>publier les changements</button>
-        </div>
-    </div>
-    <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
     <nav>
         <ul>
             <li>projets</li>
@@ -47,10 +48,12 @@
         </article>
     </section>
     <section id="portfolio">
-        <h2>Mes Projets</h2>
-        <button id="works-modify">
-            <img src="assets/icons/pen.svg" alt="icon modification"/> Modifier
-        </button>
+		<div class="project">
+			<h2>Mes Projets</h2>
+			<button id="works-modify">
+				<img src="assets/icons/pen.svg" alt="icon modification"/> Modifier
+			</button>
+		</div>
         <ul id="categories">
         </ul>
         <div class="gallery">
@@ -114,20 +117,29 @@
 
             <li class="slide">
                 <h3>Ajout photo</h3>
-                <input type="file" id="add-photo" name="photo"/>
-                <label class="add-block" for="add-photo">
-                    <img src="assets/icons/addImg.svg" class="photo-modal-add">
-                    <p class="btn-photo">+ Ajouter photo</p>
-                    <p>jpg, png : 4mo max</p>
-                </label>
-                <label for="titre">Titre</label>
-                <input id="titre" class="add-modal-champ" type="email" name="title" required autocomplete="off">
-                <label for="categorie">Catégorie</label>
-                <select id="categorie" name="categorie"></select>
+				<form id="add-work-form" class="form-full" method="post" enctype="multipart/form-data">
+					<input type="file" id="add-photo" name="photo" class="none" accept="image/png, image/jpeg" required/>
+					<label class="add-block" for="add-photo">
+						<img src="assets/icons/addImg.svg" class="photo-modal-add">
+						<p class="btn-photo">+ Ajouter photo</p>
+						<p>jpg, png : 4mo max</p>
+					</label>
+					<label for="title">Titre</label>
+					<input id="title" class="add-modal-champ" type="text" name="title" required autocomplete="off">
+					<label for="category">Catégorie</label>
 
-                <div class="input-modal">
-                    <button class="submit-modal-add" type="submit" name="submit-add">Valider</button>
-                </div>
+					<div class="dropdown">
+						<button class="input-field dropbtn" data-id="1" type="button" id="category" name="category" required>
+							Objets
+							<i class="fa-solid fa-chevron-down"></i>
+						</button>
+						<ul id="js-dropdown" class="dropdown-content" style="display: none;">
+					</div>
+
+					<div class="input-modal">
+						<button class="submit-modal-add" id="submit-work" type="submit" name="submit-add">Valider</button>
+					</div>
+				</form>
             </li>
 
         </ul>

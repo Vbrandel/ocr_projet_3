@@ -15,7 +15,8 @@ modalBg.addEventListener('click', () => {
 })
 
 
-};*/
+};
+*/
 
 
 
