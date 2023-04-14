@@ -10,6 +10,7 @@
 
 
 let works = []
+let categories = []
 const buttonEditWorks = document.querySelector('#works-modify')
 const modalBg = document.querySelector('.modal-bg')
 const modal = document.querySelector('.modal')
@@ -26,24 +27,26 @@ async function fetchData() {
     works = await getWorks()
     displayWorks(works)
 
-    const categories = await getCategories()
+    categories = await getCategories()
     displayCategories([{id: null, name: 'Tous'}].concat(categories))
+}
+
+function addWorkGallery(work) {
+    const worksList = document.querySelector('.gallery');
+    const item = document.createElement('figure')
+    item.setAttribute('data-id', work.id)
+    item.innerHTML = `
+            <img src="${work.imageUrl}" alt="${work.title}">
+            <figcaption>${work.title}</figcaption>
+        `
+    worksList.appendChild(item)
 }
 
 
 function displayWorks(works) {
     const worksList = document.querySelector('.gallery');
     worksList.innerHTML = ''
-    works.forEach(work => {
-        const item = document.createElement('figure')
-        item.setAttribute('data-id', work.id)
-        item.innerHTML = `
-            <img src="${work.imageUrl}" alt="${work.title}">
-            <figcaption>${work.title}</figcaption>
-        `
-        worksList.appendChild(item)
-    })
-
+    works.forEach(addWorkGallery)
 }
 
 function displayCategories(categories) {
@@ -69,4 +72,6 @@ function addEventCategory(item, categoryId) {
     })
 }
 
-fetchData();
+fetchData().then(() => {
+    adminInit()
+})
