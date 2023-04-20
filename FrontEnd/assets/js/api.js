@@ -17,9 +17,10 @@ async function deleteWork(workId){
     })
 }
 
-async function addWork(){
+async function addWork(data){
     return await fetch(`http://localhost:5678/api/works`, {
         method: "POST",
+        body: data,
         headers: {
             Authorization: `Bearer ${sessionStorage.getItem('token')}`
         }

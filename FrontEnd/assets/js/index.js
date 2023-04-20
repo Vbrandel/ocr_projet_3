@@ -1,31 +1,52 @@
+/**
+ * 1. Enlever les filtres si connecté
+ * 2. Afficher les travaux dans la modal
+ * 3. Ajouter un évènement permettant de supprimer un "work"
+ * 4. Faire l'appel api pour supprimer le "work" + mettre à jour le DOM
+ *
+ */
+
+
+
+
 let works = []
+let categories = []
+const buttonEditWorks = document.querySelector('#works-modify')
+const modalBg = document.querySelector('.modal-bg')
+const modal = document.querySelector('.modal')
+
+buttonEditWorks.addEventListener('click', () => {
+    modal.style.display = 'block'
+})
+
+modalBg.addEventListener('click', () => {
+    modal.style.display = 'none'
+})
 
 async function fetchData() {
-    works = await fetch('http://localhost:5678/api/works')
-    works = await works.json()
+    works = await getWorks()
     displayWorks(works)
 
+    categories = await getCategories()
+    displayCategories([{id: null, name: 'Tous'}].concat(categories))
+}
 
-    fetch('http://localhost:5678/api/categories')
-        .then(res => res.json())
-        .then(categories => {
-            displayCategories([{id: null, name: 'Tous'}].concat(categories))
-        })
+function addWorkGallery(work) {
+    const worksList = document.querySelector('.gallery');
+    const item = document.createElement('figure')
+    item.setAttribute('data-id', work.id)
+    item.innerHTML = `
+            <img src="${work.imageUrl}" alt="${work.title}">
+            <figcaption>${work.title}</figcaption>
+        `
+    worksList.appendChild(item)
 }
 
 
 function displayWorks(works) {
     const worksList = document.querySelector('.gallery');
     worksList.innerHTML = ''
-    works.forEach(work => {
-        const item = document.createElement('figure')
-        item.innerHTML = `
-            <img src="${work.imageUrl}" alt="${work.title}">
-            <figcaption>${work.title}</figcaption>
-        `
-        worksList.appendChild(item)
-    })
-
+    works.forEach(addWorkGallery)
 }
 
 function displayCategories(categories) {
@@ -51,4 +72,6 @@ function addEventCategory(item, categoryId) {
     })
 }
 
-fetchData();
+fetchData().then(() => {
+    adminInit()
+})
