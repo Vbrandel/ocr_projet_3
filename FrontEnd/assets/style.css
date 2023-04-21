@@ -548,5 +548,6 @@ h3 {
 }
 
 .dropDownMenu{
+    display: none;
 	box-shadow: 0px 14px 16px rgba(0, 0, 0, 0.09);
 }
