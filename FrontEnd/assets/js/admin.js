@@ -49,6 +49,7 @@ function adminInit() {
         })
 
         cross.addEventListener('click', () => {
+            modalContent.style.transform = 'translateX(0)' // fonctionne bizarrement
             closeWorkModal()
         })
 
@@ -146,6 +147,17 @@ function adminInit() {
             });
         }
 
+        // Test mignature ?
+        //function changeFile() {
+        //    const inputFile = document.querySelector('.photo-modal-add')
+        //    const imgUploaded = document.createElement('img');
+        //                
+        //        image.src = URL.createObjectURL(inputFile.files[0]);
+        //        image.className = 'img-uploaded';
+        //        document.querySelector('.add-block').appendChild(imgUploaded); //je créer la visualisation de l'image
+        //            
+        //    }
+
         async function addWorkForm(form) {
             const title = form.title.value
             const category = selectedCategory
@@ -162,26 +174,6 @@ function adminInit() {
 
 
         }
-
-        // Envoi du Post
-        // Idée :
-        // function addWorkForm avec l'ID du form #add-work-form
-        // évenement sur le bouton valider
-        //
-        //           fetch(worksURI, {
-        //              method: "POST",
-        //              headers: {
-        //                  'Authorization': 'Bearer ' + token,
-        //              },
-        //            })
-        //             .then(function(res) {
-        //                  if (res.ok) {
-        //                     return res.json();
-        //             }
-        // Problème : comment récupérer la thumbnail sur input add-photo ?
-        // Comment savoir si tout est bien envoyé dans la DB
-        // Savoir si les données envoyés sont bien conforme
-
 
         changeInnerHtml(login, "logout");
         logOut(login);
