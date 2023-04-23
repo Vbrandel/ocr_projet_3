@@ -1,27 +1,5 @@
-/**
- * 1. Enlever les filtres si connecté
- * 2. Afficher les travaux dans la modal
- * 3. Ajouter un évènement permettant de supprimer un "work"
- * 4. Faire l'appel api pour supprimer le "work" + mettre à jour le DOM
- *
- */
-
-
-
-
 let works = []
 let categories = []
-const buttonEditWorks = document.querySelector('#works-modify')
-const modalBg = document.querySelector('.modal-bg')
-const modal = document.querySelector('.modal')
-
-buttonEditWorks.addEventListener('click', () => {
-    modal.style.display = 'block'
-})
-
-modalBg.addEventListener('click', () => {
-    modal.style.display = 'none'
-})
 
 async function fetchData() {
     works = await getWorks()

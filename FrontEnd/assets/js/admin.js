@@ -16,56 +16,25 @@ function logOut(element) {
 
 function adminInit() {
 
+    const modal = new Modal()
+
     if (token != null) {
         const categoriesUl = document.querySelector('#categories');
         const buttonEditWorks = document.querySelector('#works-modify')
-        const modalBg = document.querySelector('.modal-bg')
-        const modal = document.querySelector('.modal')
-        const modalContent = document.querySelector('.modal-container ul')
-        const cross = document.querySelector('.cross')
-        const addImg = document.querySelector('.add-img')
-        const modalAdd = document.querySelector('.modal-add')
-        const modalArrow = document.querySelector('.modal .arrow')
-        let dropDownMenu = document.getElementById('js-dropdown');
         const formAddWork = document.querySelector('#add-work-form')
+        const navbarAdmin = document.querySelector('.navbar-admin')
 
-        function closeWorkModal() {
-            modal.style.display = 'none'
-            modalBg.style.display = 'none'
-        }
-
-        function openWorkModal(){
+        function openWorkModal() {
             displayWorksModal()
-            modal.style.display = 'block'
-            modalBg.style.display = 'block'
+            modal.show()
         }
 
         buttonEditWorks.addEventListener('click', () => {
             openWorkModal()
         })
 
-        modalBg.addEventListener('click', () => {
-            closeWorkModal()
-        })
-
-        cross.addEventListener('click', () => {
-            modalContent.style.transform = 'translateX(0)' // fonctionne bizarrement
-            closeWorkModal()
-        })
-
-        modalArrow.addEventListener('click', (modalBg) => {
-            modalContent.style.transform = 'translateX(0)'
-            modalArrow.style.display = 'none'
-        })
-
-        addImg.addEventListener('click', () => {
-            modalContent.style.transform = 'translateX(-100%)'
-            modalArrow.style.display = 'block'
-        })
-
-        cross.addEventListener('click', (modalAdd) => {
-            modalAdd.style.display = 'none';
-        })
+        document.getElementById("navbar").style.paddingTop = "50px";
+        navbarAdmin.style.display = 'block';
 
         formAddWork.addEventListener('submit', (e) => {
             e.preventDefault()
@@ -89,6 +58,9 @@ function adminInit() {
                 const button = document.createElement('button')
                 button.innerHTML = '<img src="assets/icons/trash.svg" alt="Icone suppression">'
 
+                //const move = document.createElement('move')
+                //move.innerHTML = '<img src="assets/icons/deplacer.svg" alt="Icone move">'
+
                 button.addEventListener('click', async () => {
                     const workGallery = document.querySelector(`.gallery figure[data-id="${work.id}"]`)
 
@@ -107,44 +79,9 @@ function adminInit() {
             })
         }
 
-        // Ouverture menu //
-        function openDropdownBtn(dropDownMenu) {
-            let dropDownBtn = document.querySelector('.input-field.dropbtn');
-            dropDownBtn.addEventListener('click', function (event) {
-                dropDownMenu.style.display = "block";
-            })
-        }
-
-        // Fermeture menu //
-        const closeDropDown = function (e) {
-            let dropDownMenu = document.getElementById('js-dropdown');
-            if (dropDownMenu.style.display === "none") return;
-            e.preventDefault();
-            dropDownMenu.style.display = 'none';
-        }
-
-        // Ajoute les catégories au menu déroulant //
-        function dropDownCategories(dropDownMenu) {
-            selectedCategory = categories[0].id
-            categories.forEach(category => {
-                let listElement = document.createElement('li');
-                dropDownMenu.appendChild(listElement);
-                listElement.dataset.id = category.id;
-                listElement.innerHTML = category.name;
-                listElement.addEventListener('click', closeDropDown);
-            });
-            setCategory(dropDownMenu);
-        }
-
         // Change la catégorie du menu //
-        function setCategory(dropDownMenu) {
-            dropDownMenu.addEventListener('click', function (event) {
-                let dropbtn = document.querySelector('.input-field.dropbtn');
-                let icon = "<i class='fa-solid fa-chevron-down'></i>"
-                dropbtn.innerHTML = event.target.textContent + icon;
-                dropbtn.dataset.id = event.target.dataset.id;
-                selectedCategory = event.target.dataset.id
-            });
+        function setCategory(categoryId) {
+            selectedCategory = categoryId
         }
 
         // Test mignature ?
@@ -170,15 +107,14 @@ function adminInit() {
             const work = await addWork(formData).then(res => res.json())
             works.push(work)
             addWorkGallery(work)
-            closeWorkModal()
+            modal.hide()
 
 
         }
 
         changeInnerHtml(login, "logout");
         logOut(login);
-        dropDownMenu.style.display = "none";
-        openDropdownBtn(dropDownMenu);
-        dropDownCategories(dropDownMenu);
+        selectedCategory = categories[0].id
+        new Dropdown(categories, setCategory)
     }
 }
