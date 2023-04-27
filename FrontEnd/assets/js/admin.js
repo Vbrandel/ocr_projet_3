@@ -84,17 +84,6 @@ function adminInit() {
             selectedCategory = categoryId
         }
 
-        // Test mignature ?
-        //function changeFile() {
-        //    const inputFile = document.querySelector('.photo-modal-add')
-        //    const imgUploaded = document.createElement('img');
-        //                
-        //        image.src = URL.createObjectURL(inputFile.files[0]);
-        //        image.className = 'img-uploaded';
-        //        document.querySelector('.add-block').appendChild(imgUploaded); //je créer la visualisation de l'image
-        //            
-        //    }
-
         async function addWorkForm(form) {
             const title = form.title.value
             const category = selectedCategory
