@@ -292,7 +292,8 @@ footer nav ul {
 }
 
 .modal-container {
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     width: 100%;
 }
 
@@ -587,4 +588,8 @@ nav a:hover{
     line-height: 19px;
     text-align: center;
     margin: 0 5px 20px 0;
+}
+
+.photo-modal-add {
+    width: 100px;
 }

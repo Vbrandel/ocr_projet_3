@@ -4,6 +4,7 @@ class Dropdown {
         this.categories = categories
         this.dropDownMenu = document.getElementById('js-dropdown');
         this.setCategory = setCategory
+        this.isOpen = false;
         this.createDOM()
         this.initEvent()
     }
@@ -12,10 +13,6 @@ class Dropdown {
         let dropDownBtn = document.querySelector('.input-field.dropbtn');
         dropDownBtn.addEventListener('click', () => {
             this.open()
-        })
-
-        dropDownBtn.addEventListener('click', () => {
-            this.close()
         })
 
         this.dropDownMenu.addEventListener('click', (event) => {
@@ -33,19 +30,24 @@ class Dropdown {
             this.dropDownMenu.appendChild(listElement);
             listElement.dataset.id = category.id;
             listElement.innerHTML = category.name;
-            listElement.addEventListener('click', (e) => this.close(e));
+            listElement.addEventListener('click', () => this.close());
         });
     }
 
     open() {
+        if(this.isOpen){
+            this.close()
+            return
+        }
         this.dropDownMenu.style.display = "block";
+        this.isOpen = true
     }
 
-    close(e) {
-        e.preventDefault();
+    close() {
         let dropDownMenu = document.getElementById('js-dropdown');
         if (dropDownMenu.style.display === "none") return;
         dropDownMenu.style.display = 'none';
+        this.isOpen = false
     }
 
 
