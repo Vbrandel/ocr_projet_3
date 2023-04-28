@@ -22,6 +22,7 @@ function adminInit() {
         const categoriesUl = document.querySelector('#categories');
         const buttonEditWorks = document.querySelector('#works-modify')
         const formAddWork = document.querySelector('#add-work-form')
+        const navbarAdmin = document.querySelector('.navbar-admin')
 
         function openWorkModal() {
             displayWorksModal()
@@ -31,6 +32,9 @@ function adminInit() {
         buttonEditWorks.addEventListener('click', () => {
             openWorkModal()
         })
+
+        document.getElementById("navbar").style.paddingTop = "50px";
+        navbarAdmin.style.display = 'block';
 
         formAddWork.addEventListener('submit', (e) => {
             e.preventDefault()
@@ -54,6 +58,9 @@ function adminInit() {
                 const button = document.createElement('button')
                 button.innerHTML = '<img src="assets/icons/trash.svg" alt="Icone suppression">'
 
+                //const move = document.createElement('move')
+                //move.innerHTML = '<img src="assets/icons/deplacer.svg" alt="Icone move">'
+
                 button.addEventListener('click', async () => {
                     const workGallery = document.querySelector(`.gallery figure[data-id="${work.id}"]`)
 
@@ -76,17 +83,6 @@ function adminInit() {
         function setCategory(categoryId) {
             selectedCategory = categoryId
         }
-
-        // Test mignature ?
-        //function changeFile() {
-        //    const inputFile = document.querySelector('.photo-modal-add')
-        //    const imgUploaded = document.createElement('img');
-        //                
-        //        image.src = URL.createObjectURL(inputFile.files[0]);
-        //        image.className = 'img-uploaded';
-        //        document.querySelector('.add-block').appendChild(imgUploaded); //je créer la visualisation de l'image
-        //            
-        //    }
 
         async function addWorkForm(form) {
             const title = form.title.value

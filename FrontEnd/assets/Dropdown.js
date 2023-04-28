@@ -14,10 +14,6 @@ class Dropdown {
             this.open()
         })
 
-        dropDownBtn.addEventListener('click', () => {
-            this.close()
-        })
-
         this.dropDownMenu.addEventListener('click', (event) => {
             let dropbtn = document.querySelector('.input-field.dropbtn');
             let icon = "<i class='fa-solid fa-chevron-down'></i>"
