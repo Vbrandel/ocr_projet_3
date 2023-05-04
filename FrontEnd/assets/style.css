@@ -292,7 +292,8 @@ footer nav ul {
 }
 
 .modal-container {
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     width: 100%;
 }
 
@@ -588,3 +589,18 @@ nav a:hover{
     text-align: center;
     margin: 0 5px 20px 0;
 }
+
+.photo-modal-add {
+    width: 100px;
+}
+
+/* .grey-btn{
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 60px;
+    padding: 10px 100px;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Syne';
+} */
