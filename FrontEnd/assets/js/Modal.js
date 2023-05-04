@@ -39,6 +39,9 @@ class Modal {
 
             reader.addEventListener("load", () => {
                 const photoModalAdd = document.querySelector('.photo-modal-add')
+                // Pour enlever le bouton quand un élément est chargé
+                // const btnPhoto = document.querySelector('.btn-photo')
+                // btnPhoto.style.display = 'none'
                 photoModalAdd.src = reader.result;
             }, false);
 
@@ -74,5 +77,6 @@ class Modal {
         this.modalBg.style.display = 'none'
     }
 
+    
 
 }

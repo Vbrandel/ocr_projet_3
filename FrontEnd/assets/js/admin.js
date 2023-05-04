@@ -101,9 +101,29 @@ function adminInit() {
 
         }
 
+        function checkValidForm() {
+            let buttonAddWork = document.getElementById('submit-work')
+            let form = document.getElementById('add-work-form');
+            form.addEventListener('input', function() {
+                if ((form["title"].value !== "") && (form["add-photo"].value !== "")) {
+                    buttonAddWork.style.backgroundColor = '#1D6154'
+                    buttonAddWork.style.cursor = 'pointer'
+
+
+                    // J'aimerais que tant que les 2 conditions ne sont pas réunis, les fonctionnalités JS du submit du form ne se déclenche pas
+                    // Problème : Il pense que le form à toujours un fichier de charger (peut-être récuperer la fonction reader de l'autre page ?)
+                //     buttonAddWork.classList.add('grey-btn');
+                //     buttonAddWork.remove('submit-modal-add')
+                // } else {
+                //     buttonAddWork.classList.add('submit-modal-add');
+                }
+            })
+        }
+
         changeInnerHtml(login, "logout");
         logOut(login);
         selectedCategory = categories[0].id
         new Dropdown(categories, setCategory)
+        checkValidForm();
     }
 }

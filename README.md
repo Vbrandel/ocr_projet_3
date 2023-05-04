@@ -1,5 +1,3 @@
-# ocr_projet_3
-# ocr_projet_3
-# ocr_projet_3
-# ocr_projet_3
-# ocr_projet_3
+Projet 3 : Portfolio Sophie Bluel
+
+Virgil Brandel
