@@ -473,7 +473,7 @@ h3 {
 }
 
 .submit-modal-add {
-    background-color: #A7A7A7;
+    background-color: #1D6154;
     color: white;
     border: none;
     border-radius: 60px;
@@ -481,6 +481,10 @@ h3 {
     font-size: 18px;
     font-weight: 700;
     font-family: 'Syne';
+}
+
+.submit-modal-add:disabled {
+    background-color: #A7A7A7;
 }
 
 .input-modal {
