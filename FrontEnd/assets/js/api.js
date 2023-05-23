@@ -1,3 +1,5 @@
+// Se fichier charge les appels
+
 async function getWorks(){
     const works = await fetch('http://localhost:5678/api/works')
     return works.json()

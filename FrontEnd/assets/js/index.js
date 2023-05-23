@@ -1,3 +1,5 @@
+// Se fichier charge les éléments nécessaire à la page index sans connexion (Galerie, bouton trier, fonction trier)
+
 let works = []
 let categories = []
 
@@ -8,6 +10,7 @@ async function fetchData() {
     categories = await getCategories()
     displayCategories([{id: null, name: 'Tous'}].concat(categories))
 }
+
 
 function addWorkGallery(work) {
     const worksList = document.querySelector('.gallery');

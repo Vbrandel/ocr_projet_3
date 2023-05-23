@@ -1,3 +1,5 @@
+// Se fichier créer le menu déroulant
+
 class Dropdown {
 
     constructor(categories, setCategory) {

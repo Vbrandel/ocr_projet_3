@@ -12,36 +12,38 @@ class Modal {
     }
 
     initEvents() {
+        //Ferme la modal si on clique en dehors
         this.modalBg.addEventListener('click', () => {
-            this.modalContent.style.transform = 'translateX(0)' // fonctionne bizarrement
+            this.modalContent.style.transform = 'translateX(0)'
             this.modalArrow.style.display = 'none'
             this.hide()
         });
 
+        // Croix pour close la modal
         this.cross.addEventListener('click', () => {
-            this.modalContent.style.transform = 'translateX(0)' // fonctionne bizarrement
+            this.modalContent.style.transform = 'translateX(0)'
             this.modalArrow.style.display = 'none'
             this.hide()
         })
 
+        // Arrow pour revenir à la modal précedente
         this.modalArrow.addEventListener('click', (modalBg) => {
             this.modalContent.style.transform = 'translateX(0)'
             this.modalArrow.style.display = 'none'
         })
 
+        // Bouton première modal avec effet slide vers la deuxième
         this.addImg.addEventListener('click', () => {
             this.modalContent.style.transform = 'translateX(-100%)'
             this.modalArrow.style.display = 'block'
         })
 
+        // Reader de photo
         this.addPhoto.addEventListener('change', (e) => {
             const reader = new FileReader();
 
             reader.addEventListener("load", () => {
                 const photoModalAdd = document.querySelector('.photo-modal-add')
-                // Pour enlever le bouton quand un élément est chargé
-                // const btnPhoto = document.querySelector('.btn-photo')
-                // btnPhoto.style.display = 'none'
                 photoModalAdd.src = reader.result;
             }, false);
 

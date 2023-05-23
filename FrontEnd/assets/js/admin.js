@@ -1,4 +1,5 @@
 //Ce fichier charge le mode admin
+
 const token = sessionStorage.getItem("token");
 let selectedCategory = null;
 
@@ -7,6 +8,7 @@ function changeInnerHtml(element, newInnerHtml) {
     element.innerHTML = newInnerHtml;
 }
 
+// Déconnexion 
 function logOut(element) {
     element.setAttribute('href', 'index.html');
     element.addEventListener('click', function () {
@@ -18,17 +20,20 @@ function adminInit() {
 
     const modal = new Modal()
 
+    // Action si connecté
     if (token != null) {
         const categoriesUl = document.querySelector('#categories');
         const buttonEditWorks = document.querySelector('#works-modify')
         const formAddWork = document.querySelector('#add-work-form')
         const navbarAdmin = document.querySelector('.navbar-admin')
+        const dltImg = document.querySelector('.dlt-img')
 
         function openWorkModal() {
             displayWorksModal()
             modal.show()
         }
 
+    // Ouvre la modal avec le bouton
         buttonEditWorks.addEventListener('click', () => {
             openWorkModal()
         })
@@ -40,26 +45,27 @@ function adminInit() {
             e.preventDefault()
             addWorkForm(e.target)
         })
+        
+        dltImg.addEventListener('click', deleteAllWorks)
 
         buttonEditWorks.style.display = 'block'
         categoriesUl.style.display = 'none';
 
         let login = document.querySelector("nav ul li a[href='login.html']");
 
+        // Affiche la modal de galerie 
         async function displayWorksModal() {
             const worksListModal = document.querySelector('.gallery-modal');
             worksListModal.innerHTML = ''
             works.forEach(work => {
                 const item = document.createElement('li')
+                item.setAttribute('data-list-id', work.id)
                 item.innerHTML = `
                     <img src="${work.imageUrl}" alt="${work.title}">
                     <p>éditer</p>
                 `
                 const button = document.createElement('button')
                 button.innerHTML = '<img src="assets/icons/trash.svg" alt="Icone suppression">'
-
-                //const move = document.createElement('move')
-                //move.innerHTML = '<img src="assets/icons/deplacer.svg" alt="Icone move">'
 
                 button.addEventListener('click', async () => {
                     const workGallery = document.querySelector(`.gallery figure[data-id="${work.id}"]`)
@@ -79,11 +85,12 @@ function adminInit() {
             })
         }
 
-        // Change la catégorie du menu //
+        // Change la catégorie du menu déroulant 
         function setCategory(categoryId) {
             selectedCategory = categoryId
         }
 
+        // Ajoute les photos
         async function addWorkForm(form) {
             const title = form.title.value
             const category = selectedCategory
@@ -94,36 +101,72 @@ function adminInit() {
             formData.append('image', image)
 
             const work = await addWork(formData).then(res => res.json())
+
             works.push(work)
             addWorkGallery(work)
             modal.hide()
+            emptyForm()
+        }
 
+        function emptyForm(){
+            const buttonAddWork = document.getElementById('submit-work')
+            const form = document.getElementById('add-work-form');
+            const photoModalAdd = document.querySelector('.photo-modal-add');
+
+            buttonAddWork.setAttribute('disabled', '')
+            form.reset()
+            photoModalAdd.setAttribute('src', 'assets/icons/addImg.svg')
 
         }
 
-        function checkValidForm() {
-            let buttonAddWork = document.getElementById('submit-work')
+        // Vérifie si les champs sont bien remplis
+        function checkValidForm(form) {
+            const buttonAddWork = document.getElementById('submit-work')
+            if(
+                form.title.value &&
+                form.title.value.length >= 3 &&
+                form.photo.files[0]
+            ){
+                buttonAddWork.removeAttribute('disabled')
+                return
+            }
+            buttonAddWork.setAttribute('disabled', '')
+        }
+
+        function initEventForm(){
+            const addPhoto = document.querySelector('#add-photo')
+            const title = document.querySelector('#title')
+
             let form = document.getElementById('add-work-form');
-            form.addEventListener('input', function() {
-                if ((form["title"].value !== "") && (form["add-photo"].value !== "")) {
-                    buttonAddWork.style.backgroundColor = '#1D6154'
-                    buttonAddWork.style.cursor = 'pointer'
 
-
-                    // J'aimerais que tant que les 2 conditions ne sont pas réunis, les fonctionnalités JS du submit du form ne se déclenche pas
-                    // Problème : Il pense que le form à toujours un fichier de charger (peut-être récuperer la fonction reader de l'autre page ?)
-                //     buttonAddWork.classList.add('grey-btn');
-                //     buttonAddWork.remove('submit-modal-add')
-                // } else {
-                //     buttonAddWork.classList.add('submit-modal-add');
-                }
+            title.addEventListener('input', (e) => {
+                checkValidForm(form)
             })
+
+            addPhoto.addEventListener('input', (e) => {
+                checkValidForm(form)
+            })
+
+        }
+
+        // Bouton suppression galerie
+        async function deleteAllWorks(){
+            for(let work of works){
+                const dataListId = document.querySelector(`[data-list-id="${work.id}"]`)
+                const dataId = document.querySelector(`[data-id="${work.id}"]`)
+                const res = await deleteWork(work.id)
+                if(res.ok){
+                    dataListId.remove()
+                    dataId.remove()
+                }
+                window.location.reload();
+            }
         }
 
         changeInnerHtml(login, "logout");
         logOut(login);
         selectedCategory = categories[0].id
         new Dropdown(categories, setCategory)
-        checkValidForm();
+        initEventForm();
     }
 }
