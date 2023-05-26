@@ -159,7 +159,6 @@ function adminInit() {
                     dataListId.remove()
                     dataId.remove()
                 }
-                window.location.reload();
             }
         }
 
